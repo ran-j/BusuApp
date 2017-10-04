@@ -7,7 +7,6 @@ var socket;
 			console.log( jqxhr.status ); // 200
 			console.log( "Load was performed socket.io" );
 			
-			socket = io();
 			abrirConexao('http://busu.ucam-campos.br');		
 		});
 	}
