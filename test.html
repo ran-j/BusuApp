@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<p>Click the button to return the number of characters in the string "Hello World!".</p>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+
+<button onclick="myFunction()">Try it</button>
+<button onclick="myFunction2()">Try it</button>
+
+<p id="demo"></p>
+
+<script>
+var socket = io.connect("http://170.84.52.5:25555/");
+function myFunction() {
+	socket.emit("Cadastro", "celular");
+	
+	socket.on("new-message", function(msg){
+			alert(msg);
+			
+		//parar de ouvir
+		socket.removeAllListeners("new-message");
+	});
+	
+}
+
+function myFunction2() {
+
+	socket.emit("teste");
+	
+}
+
+
+</script>
+
+</body>
+</html>

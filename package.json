@@ -1,0 +1,21 @@
+{
+    "name": "io.cordova.busu3",
+    "version": "1.0.0",
+    "displayName": "Busu 3",
+    "cordova": {
+        "platforms": [
+            "android"
+        ],
+        "plugins": {
+            "cordova-plugin-geolocation": {},
+            "cordova-plugin-whitelist": {},
+            "cordova-plugin-device": {}
+        }
+    },
+    "dependencies": {
+        "cordova-android": "^6.1.2",
+        "cordova-plugin-device": "^1.1.6",
+        "cordova-plugin-geolocation": "~2.4.2",
+        "cordova-plugin-whitelist": "1"
+    }
+}
