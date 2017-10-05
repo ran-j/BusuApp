@@ -51,3 +51,6 @@
 	];
 	  
 	 
+	 var jockeyXSantaRosacs = [ 
+		{ cor : 'verde', dist : '23km', tari : 'R$ 2.75', hor : 'Á cada 40 minutos'}
+	];

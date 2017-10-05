@@ -50,22 +50,35 @@ var CeasaxStoAntonioComplesto = CeasaxStoAntonio.concat(CeasaxStoAntonioVolta);
 
 	//array com as rotas dos busus
 	var asrotas = [ 
-		{k: 0, v: CeasaxStoAntonioComplesto },
-		{k: 1, v: JockeyxSantaRosa },
-		{k: 2, v: ParquexAuroraxLeaoxida },
-		{k: 3, v: rotateste }// só para apresentação
+		{k: 0, v: jockeyXSantaRosa },
+		{k: 1, v: ParquexAuroraxLeaoxida },
+		{k: 2, v: rotateste }
 	];
 		
 	var ospontos = [
-		{k: 0, v: "null", cs: "null" },
-		{k: 1, v: locatonList, cs: "null" },
-		{k: 2, v: "null", cs: "null" },
-		{k: 3, v: pontostexte, cs: pontostextecs }
+		{k: 0, v: "null", cs: jockeyXSantaRosacs },
+		{k: 1, v: locatonList, cs: pontostextecs },
+		{k: 2, v: pontostexte, cs: pontostextecs }
 	];
 
  
 //inicio de tudo
 document.addEventListener("deviceready", function() {  
+	//erro hanndler
+	window.onerror = function(msg, url, line, col, error) {
+		var extra = !col ? '' : '\ncolumn: ' + col;
+		extra += !error ? '' : '\nerror: ' + error;
+
+		if ('file:///android_asset/www/cordova.js' != url){
+			//alert("Error: " + msg + "\nurl: " + url + "\nline: " + line + extra);
+		}
+ 
+		var suppressErrorAlert = true;
+ 
+		return suppressErrorAlert;
+	};
+
+	
 	//deixar a barra azul
 	StatusBar.styleBlackOpaque();
     StatusBar.backgroundColorByHexString("#19618D");
@@ -97,25 +110,7 @@ document.addEventListener("deviceready", function() {
 			Infor.style.display = "none";
 		}
 	}
-	
-	//erro hanndler
-	window.onerror = function(msg, url, line, col, error) {
-		var extra = !col ? '' : '\ncolumn: ' + col;
-		extra += !error ? '' : '\nerror: ' + error;
-
-		if ('file:///android_asset/www/cordova.js' != url){
-			alert("Error: " + msg + "\nurl: " + url + "\nline: " + line + extra);
-		}
- 
-		var suppressErrorAlert = true;
- 
-		return suppressErrorAlert;
-	};
-	
-	//setTimeout(function(){
-	//	throw new Error("boom!");
-	//}, 1)
-	
+		
 }, false);
 
 
@@ -169,19 +164,13 @@ function eventosBotoes(){
 		
 		$("#buscaBu").css("background-color", "#5cafe1");
 		$("#mapaBu").css("background-color", "#18608d");
-		
-		contatoComServidor();
-		
+				
 		//passa a chave como posição para um array com as coordenadas das rotas
-		var chavevetor = parseInt(chavePorValor(words,$(this).text()));
+		var chavevetor = parseInt(chavePorValor(words,$(this).text())) -1;
 				
 		//colocar as rotas no mapa		
-		if(chavevetor == 2){
-			desenhaNoMap(asrotas[chavevetor].v,ospontos[chavevetor].v,ospontos[chavevetor].cs)
-			criapontosdeentradaWEB(ParquexAuroraxLeaoxvolta);
-		}else{
-			desenhaNoMap(asrotas[chavevetor].v,ospontos[chavevetor].v,ospontos[chavevetor].cs)
-		}
+		selecionarRotas(chavevetor);
+		desenhaNoMap(asrotas[chavevetor].v,ospontos[chavevetor].v,ospontos[chavevetor].cs)
 		
 		//esconde um mostra o outro
 		$("#alista").hide(); 
@@ -191,6 +180,26 @@ function eventosBotoes(){
 		$("#caixasugestao").css("background-color", "#f2f2f2");
 	
 	});
+	
+	var shots = 0;
+	function selecionarRotas(chave){
+		if (conectadoservidor == 1){
+			recebeRotas(chave);
+		} else {
+			contatoComServidor();
+			setTimeout(function(){ 
+				if (shots<3){
+					alerts.alertar("Tentando receber a localização do ônibous");
+					selecionarRotas(chave);
+					shots++;
+				} else {
+					alerts.alertar("Não foi possível receber as rotas do servidor");
+					shots = 0;
+					return
+				}
+			}, 9000);
+		}
+	}
 	
 	//função que desenha as rotas no mapa
 	function desenhaNoMap(asrotas,ospontosarray,ospontostxt){
@@ -266,7 +275,6 @@ function contatoComServidor(){
 	if(conectadoservidor == 0 && tipomapa == 0){
 		//carrega o scrip do socket io
 		carregaScript("https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js");
-		conectadoservidor = 1;
 	}
 }
 

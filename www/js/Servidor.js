@@ -6,7 +6,7 @@ var socket;
 			console.log( textStatus ); // Success
 			console.log( jqxhr.status ); // 200
 			console.log( "Load was performed socket.io" );
-			
+		
 			abrirConexao('http://busu.ucam-campos.br');		
 		});
 	}
@@ -84,8 +84,9 @@ var socket;
 	function comecarAReceber(){
 				
 		socket.on('listBus', function(abus){
+
 			for(var i=0; i < abus.length; i++){
-				var localizacaodoBusu = new google.maps.LatLng(abus[i].gps[0], abus[i].gps[1]);
+				var localizacaodoBusu = new google.maps.LatLng(abus[i].local[0], abus[i].local[1]);
 				
 				if ( onibus[i] ) {
 					onibus[i].setPosition(localizacaodoBusu);
@@ -93,13 +94,50 @@ var socket;
 					asmarker = new google.maps.Marker({
 						position: localizacaodoBusu,
 						icon: busicon,
-						map: map
+						//map: map
 					});
 					onibus[i] = asmarker;
 				}	
 			}			
 		});
 			
+	}
+	
+	var onibusRecebeido = [];
+	var MarcadorOnibus;
+	function recebeRotas(chave){
+				
+		if (onibusRecebeido.length > 1){
+			for(var i=0; i < onibusRecebeido.length; i++){
+				if (onibusRecebeido[i]){
+					
+					onibusRecebeido[i].setVisible(false);
+				}
+			}
+			onibusRecebeido = [];
+			socket.removeAllListeners("listBus");
+		}
+		
+		socket.on('listBus', function(abus){
+			for(var i=0; i < abus.length; i++){
+				if (abus[i].rota != undefined){
+					if(abus[i].rota == chave){
+						var localizacaodoBusu = new google.maps.LatLng(abus[i].local[0], abus[i].local[1]);
+						
+						if ( onibusRecebeido[i] ) {
+							onibusRecebeido[i].setPosition(localizacaodoBusu);
+						} else {
+							MarcadorOnibus = new google.maps.Marker({
+								position: localizacaodoBusu,
+								icon: busicon,
+								map: map
+							});
+							onibusRecebeido[i] = MarcadorOnibus;
+						}			
+					}
+				}
+			}			
+		});
 	}
 	
 	
