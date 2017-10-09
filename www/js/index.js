@@ -38,8 +38,8 @@ var tipomapa;
 
 
 //rotas cadastradas
-var words = ["Ceasa x StoAntonio",
-			 "Jockey X Santa Rosa",	
+var words = ["Jockey X Santa Rosa",	
+	     		"Ceasa x StoAntonio", 
 			 "Parque Aurora Via Rocha Leao",	
 			 "Pontos Teste"];
 
@@ -166,11 +166,11 @@ function eventosBotoes(){
 		$("#mapaBu").css("background-color", "#18608d");
 				
 		//passa a chave como posição para um array com as coordenadas das rotas
-		var chavevetor = parseInt(chavePorValor(words,$(this).text())) -1;
+		var chavevetor = parseInt(chavePorValor(words,$(this).text()));
 				
 		//colocar as rotas no mapa		
 		selecionarRotas(chavevetor);
-		desenhaNoMap(asrotas[chavevetor].v,ospontos[chavevetor].v,ospontos[chavevetor].cs)
+		desenhaNoMap(asrotas[chavevetor].v,ospontos[chavevetor].v,ospontos[chavevetor].cs);
 		
 		//esconde um mostra o outro
 		$("#alista").hide(); 
