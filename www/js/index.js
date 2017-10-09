@@ -184,6 +184,7 @@ function eventosBotoes(){
 	var shots = 0;
 	function selecionarRotas(chave){
 		if (conectadoservidor == 1){
+			socket.removeAllListeners("listBus");
 			recebeRotas(chave);
 		} else {
 			contatoComServidor();
