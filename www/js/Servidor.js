@@ -115,13 +115,12 @@ var socket;
 				}
 			}
 			onibusRecebeido = [];
-			socket.removeAllListeners("listBus");
 		}
 		
 		socket.on('listBus', function(abus){
 			for(var i=0; i < abus.length; i++){
-				if (abus[i].rota != undefined){
-					if(abus[i].rota == chave){
+				if (abus[i]["rota"] != undefined){
+					if(abus[i]["rota"] == chave){
 						var localizacaodoBusu = new google.maps.LatLng(abus[i].local[0], abus[i].local[1]);
 						
 						if ( onibusRecebeido[i] ) {
