@@ -446,7 +446,7 @@ function colocarosmarkerWEB(contentString,locations,omap){
 		google.maps.event.addListener(marker, 'click', (function(marker, i) {
 			return function() {
 				//salva a posição do marcador clicado
-				eraldestisno = new google.maps.LatLng(locations[i].lat,locations[i].lng);
+				destinoCache = new google.maps.LatLng(locations[i].lat,locations[i].lng);
 				//salva a lt e lng do macardor clicado
 				cacheDestLat = locations[i].lat;
 				cacheDestLng = locations[i].lng;

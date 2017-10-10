@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+ 
+<html>
+    <head>
+		<meta charset="UTF-8">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <link rel="stylesheet" type="text/css" href="css/animate.min.css">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <title>Busu</title>
+    </head>
+   <body ontouchstart="">
+	<header>
+	
+		<img class="logotype" src="img/logo.png"/>
+
+	  <div id="form">
+			<div id="mapaBu">Mapa</div>
+			<div id="buscaBu">Busca</div>
+	   </div>
+	</header>
+	
+	
+	<div class="page"> 
+	
+	    <div class="hidden" id="omapa"> 
+		
+		     <div class="bords hidden" style="width:100%;" id="map"></div> 	
+		     <div class="bords hidden" style="width:100%;" id="mapnativo"></div> 	
+			 			
+		</div>
+		
+		<div class="hidden" id="alista">
+	
+			<div id="bairros">
+				Digite a Rota
+			</div>
+		    
+			<div id="texto">
+				<input id="inputbairros" type="text"> 
+			</div>
+			
+			<div id="caixasugestao">
+				<p id="sugestao"></p>
+			</div>
+			
+		</div>
+		
+		<div id="InforDiv" class="InforDiv">
+			<div class="InforDiv-content animated zoomIn">
+				<span class="close">&times;</span>
+				Ponto de Ônibus
+				<div id="bodyContent">
+				<p id="cor"></p>
+				<p id="dis"></p>
+				<p id="tar"></p>
+				<p id="hor"></p>
+				<button style="width: 100%;height: 30px;" id="comRota">Criar Rota</button>
+			</div>
+		</div>
+	
+	</div>
+	<script src="cordova.js"></script>	
+	<script src="js/lib/jquery/jquery.js"></script>
+	<script src="js/lib/socket.io-1.2.0.js"></script>
+	<script src="js/Class/Alerts.js"></script>
+	<script src="js/Class/Mapas.js"></script>
+	<script src="js/Class/Net.js"></script>
+	<script src="js/Pontos.js"></script>
+	<script src="js/Servidor.js"></script>
+	<script src="js/Rotas.js"></script>
+	<script src="js/index.js"></script>
+	
+    </body>
+</html>
