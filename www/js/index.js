@@ -56,7 +56,7 @@ var CeasaxStoAntonioComplesto = CeasaxStoAntonio.concat(CeasaxStoAntonioVolta);
 	];
 		
 	var ospontos = [
-		{k: 0, v: "null", cs: jockeyXSantaRosacs },
+		{k: 0, v: pontostexte, cs: jockeyXSantaRosacs },
 		{k: 1, v: locatonList, cs: pontostextecs },
 		{k: 2, v: pontostexte, cs: pontostextecs }
 	];
@@ -432,7 +432,6 @@ var DestinoLng;
 var markerwe = [];
 function colocarosmarkerWEB(contentString,locations,omap){
 	var marker, i;
-	var infowindowmap = new google.maps.InfoWindow({content: contentString});
 	
 	//limpar as antigas rotas no mapa
 	if(markerwe.length > 1){
