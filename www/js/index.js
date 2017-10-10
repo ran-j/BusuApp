@@ -43,11 +43,6 @@ var words = ["Jockey X Santa Rosa",
 			 "Parque Aurora Via Rocha Leao",	
 			 "Pontos Teste"];
 
-
-//juntandos 2 pontos em um
-var CeasaxStoAntonioComplesto = CeasaxStoAntonio.concat(CeasaxStoAntonioVolta);
-
-
 	//array com as rotas dos busus
 	var asrotas = [ 
 		{k: 0, v: jockeyXSantaRosa },
