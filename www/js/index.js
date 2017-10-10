@@ -4,7 +4,8 @@ var watchID;
 var latAtual;
 var lngAtual;
 
-var eraldestisno;
+var destinoCache;
+//para ter referencia do inforwindo aberta e fechar ela a qualquer hora
 var janelaaberta;
 
 //saber se esta logado no server
@@ -485,12 +486,13 @@ function comecarrota(){
 	//verifica se o gps ta on
 	cordova.plugins.diagnostic.isLocationEnabled(function(available){
 		if (available){
-			aondequeroir = eraldestisno;
+			aondequeroir = destinoCache;
 	
 			DestinoLat = cacheDestLat;
 			DestinoLng = cacheDestLng;
-	
+			//desenhar rota ate o ponto
 			criarotasAteOPonto();
+			//assistir a sua localização
 			watchMapPosition(); 
 		}else{
 			setTimeout(function(){ 
