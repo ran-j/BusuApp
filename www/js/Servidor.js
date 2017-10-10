@@ -119,7 +119,7 @@ var socket;
 		
 		socket.on('listBus', function(abus){
 			for(var i=0; i < abus.length; i++){
-				if (abus[i]["rota"] != undefined){
+				if (typeof abus[i]['rota'] != 'undefined'){
 					if(abus[i]["rota"] == chave){
 						var localizacaodoBusu = new google.maps.LatLng(abus[i].local[0], abus[i].local[1]);
 						
