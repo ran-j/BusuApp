@@ -181,6 +181,7 @@ function eventosBotoes(){
 	function selecionarRotas(chave){
 		if (conectadoservidor == 1){
 			socket.removeAllListeners("listBus");
+			alerts.showBottom("Recebendo rotas do servidor.");
 			recebeRotas(chave);
 		} else {
 			contatoComServidor();
