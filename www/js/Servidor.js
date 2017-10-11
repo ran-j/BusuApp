@@ -109,7 +109,9 @@ var socket;
 				
 		if (onibusRecebeido.length > 1){
 			for(var i=0; i < onibusRecebeido.length; i++){
+				if(onibusRecebeido[i]){
 					onibusRecebeido[i].setMap(null);
+				}
 			}
 			onibusRecebeido = [];
 		}
