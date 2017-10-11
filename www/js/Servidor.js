@@ -119,9 +119,9 @@ var socket;
 		
 		socket.on('listBus', function(abus){
 			for(var i=0; i < abus.length; i++){
-				if (typeof abus[i]['rota'] != 'undefined'){
+				if ("rota" in abus[i]){ 
 					if(abus[i]["rota"] == chave){
-						var localizacaodoBusu = new google.maps.LatLng(abus[i].local[0], abus[i].local[1]);
+						var localizacaodoBusu = new google.maps.LatLng(abus[i]["local"][0], abus[i]["local"][1]);
 						
 						if ( onibusRecebeido[i] ) {
 							onibusRecebeido[i].setPosition(localizacaodoBusu);
