@@ -109,10 +109,7 @@ var socket;
 				
 		if (onibusRecebeido.length > 1){
 			for(var i=0; i < onibusRecebeido.length; i++){
-				if (onibusRecebeido[i]){
-					
 					onibusRecebeido[i].setVisible(false);
-				}
 			}
 			onibusRecebeido = [];
 		}
@@ -121,7 +118,9 @@ var socket;
 			for(var i=0; i < abus.length; i++){
 				if ("rota" in abus[i]){ 
 					if(abus[i]["rota"] == chave){
-						var localizacaodoBusu = new google.maps.LatLng(abus[i]["local"][0], abus[i]["local"][1]);
+						var rLat = parseFloat(abus[i]["local"][0]);
+						var rLng = parseFloat(abus[i]["local"][1]);
+						var localizacaodoBusu = new google.maps.LatLng(rLat, rLng);
 						
 						if ( onibusRecebeido[i] ) {
 							onibusRecebeido[i].setPosition(localizacaodoBusu);
