@@ -40,21 +40,72 @@ var tipomapa;
 
 //rotas cadastradas
 var words = ["Jockey X Santa Rosa",	
-	     		"Ceasa x StoAntonio", 
-			 "Parque Aurora Via Rocha Leao",	
-			 "Pontos Teste"];
+			 "Parque Aurora X Leao", 
+			 "PPrazeres X IPS via J. Maria",	
+			 "Eldorado X Codin",
+			 "Eldorado X Centro",
+			 "Nova Campos X Novo Mundo",
+			 "Fundão X Centro",
+			 "Cidade Luz",
+			 "Bonsucesso X Centro",
+			 "Ribeiro Do Amaro X Rodoviaria",
+			 "Calabouço Sta X Cecília",
+			 "Escola Agrotecnica",
+			 "Lagoa das Pedras",
+			 "Parque Prazeres X Alphaville",
+			 "Nova Campos",
+			 "Nova Campos X Novo Mundo-Custódia",
+			 "Nova Campos X Nogueira",
+			 "Parque Guarus X Nogueira",
+			 "Sto Eduardo",
+			 "Rodoviária X Travessão",
+			 ];
 
 	//array com as rotas dos busus
 	var asrotas = [ 
 		{k: 0, v: jockeyXSantaRosa },
-		{k: 1, v: ParquexAuroraxLeaoxida },
-		{k: 2, v: rotateste }
+		{k: 1, v: ParqueAuroraXLeao },
+		{k: 2, v: PPrazeresXIPSviaJMaria },
+		{k: 3, v: Eldorado_Codin },
+		{k: 4, v: Eldorado },
+		{k: 5, v: NovaCamposviaNMundo_Custódia },
+		{k: 6, v: Fundão },
+		{k: 7, v: Cidade_Luz },
+		{k: 8, v: Bonsucesso },
+		{k: 9, v: Ribeiro_Do_Amaro_Rodoviaria },
+		{k: 10, v: Calabouco_Sta_Cecília },
+		{k: 11, v: Escola_Agrotecnica },
+		{k: 12, v: Lagoa_das_Pedras },
+		{k: 13, v: PPrazeresxAlphaville },
+		{k: 14, v: NovaCampos },
+		{k: 15, v: Nova_Campos_via_N_Mundo },
+		{k: 16, v: NovaCamposviaNogueira },
+		{k: 17, v: PGuarusviaNogueira },
+		{k: 18, v: Sto_Eduardo },
+		{k: 19, v: Rodoviária_Travessao }
 	];
 		
 	var ospontos = [
 		{k: 0, v: pontostexte, cs: jockeyXSantaRosacs },
 		{k: 1, v: locatonList, cs: pontostextecs },
-		{k: 2, v: pontostexte, cs: pontostextecs }
+		{k: 2, v: locatonList, cs: pontostextecs },
+		{k: 3, v: pontostexte, cs: pontostextecs },
+		{k: 4, v: pontostexte, cs: pontostextecs },
+		{k: 5, v: pontostexte, cs: pontostextecs },
+		{k: 6, v: pontostexte, cs: pontostextecs },
+		{k: 7, v: pontostexte, cs: pontostextecs },
+		{k: 8, v: pontostexte, cs: pontostextecs },
+		{k: 9, v: pontostexte, cs: pontostextecs },
+		{k: 10, v: pontostexte, cs: pontostextecs },
+		{k: 11, v: pontostexte, cs: pontostextecs },
+		{k: 12, v: pontostexte, cs: pontostextecs },
+		{k: 13, v: pontostexte, cs: pontostextecs },
+		{k: 14, v: pontostexte, cs: pontostextecs },
+		{k: 15, v: pontostexte, cs: pontostextecs },
+		{k: 16, v: pontostexte, cs: pontostextecs },
+		{k: 17, v: pontostexte, cs: pontostextecs },
+		{k: 18, v: pontostexte, cs: pontostextecs },
+		{k: 19, v: pontostexte, cs: pontostextecs }
 	];
 
  
