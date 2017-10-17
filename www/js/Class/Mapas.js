@@ -83,7 +83,9 @@ function mapaNativo(dimap){
 			//manda erro pra teala
 			alertasr.alertar(message);
 			//tenta de novo
-			setTimeout(mapanativo, 4000);
+			setTimeout(function(){ 
+				mapanativo(dimap);
+			}, 4000);
 		}
 	});
 }
