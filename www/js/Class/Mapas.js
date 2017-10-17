@@ -292,7 +292,7 @@ function onLocationSuccessWEB( position ) {
 function onLocationSuccessNativo( result ) {
 	latAtual = result.latLng.lat;
 	lngAtual = result.latLng.lng;
-	
+	//está no index.js
 	MapaNativoLocalizacao(latAtual,lngAtual);
 }
 
