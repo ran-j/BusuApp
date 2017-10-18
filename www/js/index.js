@@ -540,8 +540,6 @@ function onOnline() {
 		
 		map.clear();
 		map.off();
-		$("#mapnativo").remove();
-		$("#mapnativo").hide();
 		$("#map").show();
 
 		iniciaMapaWeb();
@@ -553,7 +551,6 @@ function onOnline() {
 //inicia o mapa web
 function iniciaMapaWeb(){
 	tipomapa=0;
-	$("#map").show();
 	myMap.abrirMapa(tipomapa,dimap);
 }
 
