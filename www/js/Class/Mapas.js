@@ -102,7 +102,8 @@ function mapaWeb(dimap) {
 			center: new google.maps.LatLng(-21.7634634,-41.3188553),
 			zoom: 14,
 			mapTypeId: google.maps.MapTypeId.ROADMAP,
-			disableDefaultUI: true
+			disableDefaultUI: true,
+			streetViewControl: true
 		};
 
 		//cria instancia do mapa
