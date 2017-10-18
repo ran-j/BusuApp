@@ -171,7 +171,7 @@ function eventosBotoes(){
 			if(tipomapa == 0){infowindowweb.close();}
 			//tira o foco do campo de texto
 			$("#pac-input").blur();
-			$("#pac-input").hide();
+			map.controls[google.maps.ControlPosition.TOP_CENTER].clear();
 			//colocar as rotas no mapa		
 			
 			selecionarRotas(chavevetor);
