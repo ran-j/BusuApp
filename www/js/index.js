@@ -19,7 +19,6 @@ var busicon = "./img/bussicon.png";
 var busstopicon = "./img/busstop.png";
 var dimap = document.getElementById('map');
 var Infor = document.getElementById('myModal');
-var dimap2 = document.getElementById('map');
 
 //instancia a classe de alertas
 var alerts = new AlertsClass();
@@ -134,7 +133,7 @@ document.addEventListener("deviceready", function() {
 		iniciaMapaWeb();
 	}else{
 		tipomapa=1;
-		myMap.abrirMapa(tipomapa,dimap2);
+		myMap.abrirMapa(tipomapa,dimap);
 	}
 	
 	if(tipomapa == 0){
