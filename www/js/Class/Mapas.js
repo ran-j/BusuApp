@@ -143,6 +143,7 @@ function mapaWeb(dimap) {
 		
 		map.addListener('click', function(e) {
 			$("#pac-input").blur();
+			$("#pac-input").hide();
 		});		
 }
 
