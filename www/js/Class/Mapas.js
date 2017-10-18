@@ -149,6 +149,7 @@ function mapaWeb(dimap) {
 		map.addListener('click', function(e) {
 			$("#pac-input").blur();
 			map.controls[google.maps.ControlPosition.TOP_CENTER].clear();
+			statuspainel = 0;
 		});		
 }
 
