@@ -31,7 +31,7 @@ var infowindowweb;
 var contentString2 = '<div id="content">'+'<div id="siteNotice">'+ '</div>'+'<h1 id="firstHeading" class="firstHeading">Voce está aqui</h1>'+'<div id="bodyContent">'+'</div>';
 
 //pra saber se esta aberto o mapa web ou nativo
-var tipomapa;
+var tipomapa = 1;
 
 
 //rotas cadastradas
@@ -134,22 +134,24 @@ document.addEventListener("deviceready", function() {
 		iniciaMapaWeb();
 	}else{
 		tipomapa=1;
-		$("#mapnativo").show();
 		myMap.abrirMapa(tipomapa,dimap2);
 	}
 	
-	//eventos dos botoes	
-	eventosBotoes();
+	if(tipomapa == 0){
 	
-	//fehar do popup
-	var span = document.getElementsByClassName("close")[0];
-	span.onclick = function() {
-		Infor.style.display = "none";
-	}
-
-	window.onclick = function(event) {
-		if (event.target == Infor) {
+		//eventos dos botoes	
+		eventosBotoes();
+	
+		//fehar do popup
+		var span = document.getElementsByClassName("close")[0];
+		span.onclick = function() {
 			Infor.style.display = "none";
+		}
+
+		window.onclick = function(event) {
+			if (event.target == Infor) {
+				Infor.style.display = "none";
+			}	
 		}
 	}
 			
