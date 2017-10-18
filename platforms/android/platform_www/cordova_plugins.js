@@ -99,6 +99,14 @@ module.exports = [
         "clobbers": [
             "cordova.plugins.diagnostic"
         ]
+    },
+    {
+        "id": "net.ekuwang.cordova.plugin.statusbar.statusbar",
+        "file": "plugins/net.ekuwang.cordova.plugin.statusbar/www/statusbar.js",
+        "pluginId": "net.ekuwang.cordova.plugin.statusbar",
+        "clobbers": [
+            "window.statusbarTransparent"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -114,7 +122,8 @@ module.exports.metadata =
     "cordova-plugin-statusbar": "2.2.2",
     "cordova-plugin-whitelist": "1.3.2",
     "cordova-plugin-x-toast": "2.6.0",
-    "cordova.plugins.diagnostic": "3.5.0"
+    "cordova.plugins.diagnostic": "3.5.0",
+    "net.ekuwang.cordova.plugin.statusbar": "1.0.0"
 };
 // BOTTOM OF METADATA
 });

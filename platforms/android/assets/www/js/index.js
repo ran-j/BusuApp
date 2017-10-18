@@ -18,12 +18,8 @@ var youicon = "./img/you.png";
 var busicon = "./img/bussicon.png";
 var busstopicon = "./img/busstop.png";
 var dimap = document.getElementById('map');
-var Infor = document.getElementById('InforDiv');
-var dimap2 = document.getElementById('mapnativo');
-
-
-var largura = window.innerWidth - 37 + 'px';
-var tamanho = window.innerHeight - 130 + 'px';
+var Infor = document.getElementById('myModal');
+var dimap2 = document.getElementById('map');
 
 //instancia a classe de alertas
 var alerts = new AlertsClass();
@@ -32,7 +28,7 @@ var alerts = new AlertsClass();
 var myMap = new MapaClass(alerts);
 //infowindo do mapa web
 var infowindowweb;
-var contentString2 = '<div id="content">'+'<div id="siteNotice">'+ '</div>'+'<h1 id="firstHeading" class="firstHeading">Voce está aqui</h1>'+'<div id="bodyContent">'+'Sua localização Atual.'+'</div>';
+var contentString2 = '<div id="content">'+'<div id="siteNotice">'+ '</div>'+'<h1 id="firstHeading" class="firstHeading">Voce está aqui</h1>'+'<div id="bodyContent">'+'</div>';
 
 //pra saber se esta aberto o mapa web ou nativo
 var tipomapa;
@@ -125,10 +121,9 @@ document.addEventListener("deviceready", function() {
 		return suppressErrorAlert;
 	};
 
-	
-	//deixar a barra azul
-	StatusBar.styleBlackOpaque();
-    StatusBar.backgroundColorByHexString("#19618D");
+	//deixar a barra transparente
+	statusbarTransparent.toggle(); 
+	statusbarTransparent.enable();
 	
 	//classe para verificar a net
 	var myNet = new NetStatus();
@@ -157,76 +152,32 @@ document.addEventListener("deviceready", function() {
 			Infor.style.display = "none";
 		}
 	}
-		
+			
 }, false);
 
 
 function eventosBotoes(){
-	//mostra o mapa depois de carregado
-	$("#omapa").show();
-			
-	//navbars
-	$( "#buscaBu" ).click(function() {  
-		//se a infowindo estiver aberta fecha
-		if(tipomapa == 0){ Infor.style.display = "none";}
-			
-		$("#mapaBu").css("background-color", "#5cafe1");
-		$("#buscaBu").css("background-color", "#18608d");
-
-		//esconde um mostra o outro
-		$("#omapa").hide();
-		$("#alista").show();
-		
-		//limpar campo de bairros
-		$("#inputbairros").val('');
-		document.getElementById("caixasugestao").innerHTML = '';
-	});
-	
-	//navbars
-	$( "#mapaBu" ).click(function() {
-		
-		$("#buscaBu").css("background-color", "#5cafe1");
-		$("#mapaBu").css("background-color", "#18608d");;	
-		
-		//esconde um mostra o outro
-		$("#alista").hide();
-		$("#omapa").show();
-		
-		//limpar campo de bairros
-		$("#inputbairros").val('');
-		document.getElementById("caixasugestao").innerHTML = '';
-	});
-	
+	//começar a desenhar as roras
 	$( "#comRota" ).click(function() {
 		Infor.style.display = "none";
 		comecarrota();
 	});
 	
-	
-	//evento de click no resultado do campo de texto
-	$('#caixasugestao').on('click', 'p', function(){
-		//se a infowindo estiver aberta fecha
-		if(tipomapa == 0){infowindowweb.close();}
-		//alertar($(this).text());
-		
-		$("#buscaBu").css("background-color", "#5cafe1");
-		$("#mapaBu").css("background-color", "#18608d");
-				
-		//passa a chave como posição para um array com as coordenadas das rotas
-		var chavevetor = parseInt(chavePorValor(words,$(this).text()));
-				
-		//colocar as rotas no mapa		
-		selecionarRotas(chavevetor);
-		desenhaNoMap(asrotas[chavevetor].v,ospontos[chavevetor].v,ospontos[chavevetor].cs);
-		
-		//esconde um mostra o outro
-		$("#alista").hide(); 
-		$("#omapa").show();
-		
-		//troca a cor da caixa de sugestão
-		$("#caixasugestao").css("background-color", "#f2f2f2");
-	
+	$("#pac-input").on('input',function(e){
+		var chavevetor = parseInt(chavePorValor(words,$(this).val()));
+		if (chavevetor || chavevetor == 0 ){
+			//se a infowindo estiver aberta fecha
+			if(tipomapa == 0){infowindowweb.close();}
+			//tira o foco do campo de texto
+			$("#pac-input").blur();
+			//colocar as rotas no mapa		
+			
+			selecionarRotas(chavevetor);
+			desenhaNoMap(asrotas[chavevetor].v,ospontos[chavevetor].v,ospontos[chavevetor].cs);
+		}
 	});
+		
+}
 	
 	var shots = 0;
 	function selecionarRotas(chave){
@@ -293,23 +244,7 @@ function eventosBotoes(){
 			
 		}
 	}
-       
-	//qd digita no campo de rotas faz a pesquisa no array que contem as rotas
-	$("#inputbairros").keyup(function(){
-		document.getElementById("caixasugestao").innerHTML = '';
-			var texto = document.getElementById("inputbairros").value.trim();
-			if(texto != "") {
-				for(var i=0; i<words.length; i++) {	 
-					if(words[i].match(new RegExp('^' + texto, "i"))) {
-						document.getElementById("caixasugestao").innerHTML += '<p>'+words[i] + '</p>';
-						//$('#caixasugestao').append('<tr><td>'+'<p style="text-align-last:center;">'+ words[i] + '</p>'+'</td><td>');
-					}
-				}
-			}
-		});
-	}
-
-
+      
 //pegar a chave do array pelo valor
 function chavePorValor(obj, val) {
     for(var chave in obj) {
@@ -504,10 +439,9 @@ function colocarosmarkerWEB(contentString,locations,omap){
 				cacheDestLng = locations[i].lng;
 				
 				//atualiza dados e cria o popup
-				document.getElementById("cor").innerHTML = "Cor do Ônibus: "+contentString[0].cor;
-				document.getElementById("dis").innerHTML = "Dist: "+contentString[0].dist;
-				document.getElementById("tar").innerHTML = "Tarifa: "+contentString[0].tari;
-				document.getElementById("hor").innerHTML = "Horários: "+contentString[0].hor;
+				document.getElementById("title").innerHTML = contentString[0].title;
+				document.getElementById("tar").innerHTML = contentString[0].tari;
+				document.getElementById("hor").innerHTML = contentString[0].hor;
 				//mostra o pupup
 				Infor.style.display = "block";
 

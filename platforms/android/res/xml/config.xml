@@ -37,6 +37,9 @@
     <feature name="Toast">
         <param name="android-package" value="nl.xservices.plugins.Toast" />
     </feature>
+    <feature name="StatusbarTransparent">
+        <param name="android-package" value="net.ekuwang.cordova.plugin.statusbar.StatusbarTransparent" />
+    </feature>
     <feature name="Diagnostic">
         <param name="android-package" value="cordova.plugins.Diagnostic" />
         <param name="onload" value="true" />
@@ -60,4 +63,5 @@
     <access origin="*.googleapis.com" />
     <allow-intent href="market:*" />
     <preference name="loglevel" value="DEBUG" />
+    <preference name="StatusBarOverlaysWebView" value="true" />
 </widget>

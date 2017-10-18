@@ -47,10 +47,10 @@
 		{lat: -21.7647308, lng: -41.3366947, title : 'Ponto 8'}
 	];
 	var pontostextecs = [ 
-		{ cor : 'azul', dist : '23km', tari : 'R$ 2.75', hor : 'Á cada 40 minutos'}
+		{ tari : 'R$ 2.75', hor : '40 min', title : 'Rota Genérico' }
 	];
 	  
 	 
 	 var jockeyXSantaRosacs = [ 
-		{ cor : 'verde', dist : '23km', tari : 'R$ 2.75', hor : 'Á cada 40 minutos'}
+		{ tari : 'R$ 2.75', hor : '40 min', title : 'Jockey X Santa Rosa' }
 	];

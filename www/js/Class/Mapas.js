@@ -16,9 +16,6 @@ MapaClass = function(alerts){//responsalvel pelos mapas
 	
 	this.abrirMapa = function(tipodemapa,dimap){
 		alertasr = alerts;
-		//tamanho da div do mapa de acordo com o tamaho da tela
-		dimap.style.height = tamanho;
-		dimap.style.width = largura;
 		
 		if(tipodemapa==0){
 			console.log("Mapa WEB");
@@ -104,20 +101,35 @@ function mapaWeb(dimap) {
 		var mapOptions = {
 			center: new google.maps.LatLng(-21.7634634,-41.3188553),
 			zoom: 14,
-			mapTypeId: google.maps.MapTypeId.ROADMAP
+			mapTypeId: google.maps.MapTypeId.ROADMAP,
+			disableDefaultUI: true
 		};
 
+		//cria instancia do mapa
 		map = new google.maps.Map(dimap, mapOptions);
+		
+		//adiciona o painel flutuante
+		var input = document.getElementById('pac-input');
+		map.controls[google.maps.ControlPosition.TOP_CENTER].push(input);
+		setTimeout(function(){ 
+				$("#pac-input").show();
+		}, 400);
+		
 		
 		//espera o mapa carregar
 		google.maps.event.addListenerOnce(map, 'idle', function(){
 			console.log("Carregou o mapa web");
+			
 			//istancia o directionsService, que e pra fazer rotas ate os pontos
 			directionsService = new google.maps.DirectionsService;
 			directionsDisplay = new google.maps.DirectionsRenderer({suppressMarkers: true});
 			directionsDisplay.setMap(map);
 			VerificarGps(dimap);
 		});
+		
+		map.addListener('click', function(e) {
+			$("#pac-input").blur();
+		});		
 }
 
 //variavel axuliar, não mexe
@@ -266,7 +278,7 @@ function veriifiloop(){
 //solicitar localização do mapa web
 function pegarposicaoWEB() {
 
-	navigator.geolocation.getCurrentPosition(onLocationSuccessWEB, erroWEB, { enableHighAccuracy: true }, { timeout: 3000 });
+	navigator.geolocation.getCurrentPosition(onLocationSuccessWEB, erroWEB, { maximumAge: 5000, timeout: 3000, enableHighAccuracy: true });
 		
 }
 
@@ -299,12 +311,13 @@ function onLocationSuccessNativo( result ) {
 
 //erro do mapa web
 function erroWEB(erro){
-		
+	alertasr.alertar( 'code: '    + error.code    + '\n' +
+              'message: ' + error.message + '\n');
 }
 
 //erro do mapa nativo
 function erroNATIVO(erro){
-	alertasr.alertar( "Erro ao pegar a sua localização" );
+	alertasr.alertar( "Erro ao iniciar os modulos do mapa" );
 }
 
 

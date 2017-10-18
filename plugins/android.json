@@ -43,5 +43,10 @@
         "cordova-plugin-compat": {
             "PACKAGE_NAME": "io.cordova.busu3"
         }
+    },
+	"dependent_plugins": {
+    "net.ekuwang.cordova.plugin.statusbar": {
+      "PACKAGE_NAME": "io.cordova.hellocordova"
     }
+  }
 }

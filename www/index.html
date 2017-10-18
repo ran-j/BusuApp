@@ -10,57 +10,62 @@
         <link rel="stylesheet" type="text/css" href="css/index.css">
         <title>Busu</title>
     </head>
-   <body ontouchstart="">
-	<header>
+   <body>
+ 
+	<input id="pac-input" class="controls hidden" list="browsers" type="text"  data-list-focus="true"  placeholder="Digite o nome da rota">
+		<datalist id="browsers">
+			 <option>Jockey X Santa Rosa</option>
+			 <option>Parque Aurora X Leao</option>
+			 <option>PPrazeres X IPS via J. Maria</option>
+			 <option>Eldorado X Codin</option>
+			 <option>Eldorado X Centro</option>
+			 <option>Nova Campos X Novo Mundo</option>
+			 <option>Fundão X Centro</option>
+			 <option>Cidade Luz</option>
+			 <option>Bonsucesso X Centro</option>
+			 <option>Ribeiro Do Amaro X Rodoviaria</option>
+			 <option>Calabouço Sta X Cecília</option>
+			 <option>Escola Agrotecnica</option>
+			 <option>Lagoa das Pedras</option>
+			 <option>Parque Prazeres X Alphaville</option>
+			 <option>Nova Campos</option>
+			 <option>Nova Campos X Novo Mundo-Custódia</option>
+			 <option>Nova Campos X Nogueira</option>
+			 <option>Parque Guarus X Nogueira</option>
+			 <option>Sto Eduardo</option>
+			 <option>Rodoviária X Travessão</option>
+		</datalist> 
+	</input>
 	
-		<img class="logotype" src="img/logo.png"/>
+    <div id="map"></div>
+	
+	<div id="myModal" class="modal">
 
-	  <div id="form">
-			<div id="mapaBu">Mapa</div>
-			<div id="buscaBu">Busca</div>
-	   </div>
-	</header>
+		<!-- Modal content -->
+		<div class="modal-content">
+			<span class="close">&times;</span>
+			<p class="titulo" id="title"></p>
 	
+			<img src="img/img.png" class="imagem"/>
 	
-	<div class="page"> 
-	
-	    <div class="hidden" id="omapa"> 
-		
-		     <div class="bords hidden" style="width:100%;" id="map"></div> 	
-		     <div class="bords hidden" style="width:100%;" id="mapnativo"></div> 	
-			 			
-		</div>
-		
-		<div class="hidden" id="alista">
-	
-			<div id="bairros">
-				Digite a Rota
+			<div class="center">
+				<table border=0 align=left width=1 height=90>
+					<tr><td > <b> <p id="hor"></p> </b> </td></tr>
+				</table>
+				<div class="box linha-vertical">
+					Tempo de espera
+				</div>
 			</div>
-		    
-			<div id="texto">
-				<input id="inputbairros" type="text"> 
+			<div class="dots"> 
+				................................................
 			</div>
-			
-			<div id="caixasugestao">
-				<p id="sugestao"></p>
-			</div>
-			
-		</div>
-		
-		<div id="InforDiv" class="InforDiv">
-			<div class="InforDiv-content animated zoomIn">
-				<span class="close">&times;</span>
-				Ponto de Ônibus
-				<div id="bodyContent">
-				<p id="cor"></p>
-				<p id="dis"></p>
-				<p id="tar"></p>
-				<p id="hor"></p>
-				<button style="width: 100%;height: 30px;" id="comRota">Criar Rota</button>
+			<div class="barrapreco">
+				<b><p id="tar"></p></b>
 			</div>
 		</div>
-	
+		<button class="button" id="comRota"><b>Criar Rota</b></button>
 	</div>
+	 
 	<script src="cordova.js"></script>	
 	<script src="js/lib/jquery/jquery.js"></script>
 	<script src="js/lib/socket.io-1.2.0.js"></script>
