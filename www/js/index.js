@@ -171,6 +171,7 @@ function eventosBotoes(){
 			if(tipomapa == 0){infowindowweb.close();}
 			//tira o foco do campo de texto
 			$("#pac-input").blur();
+			$("#pac-input").hide();
 			//colocar as rotas no mapa		
 			
 			selecionarRotas(chavevetor);
