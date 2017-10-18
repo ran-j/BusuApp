@@ -27,3 +27,6 @@ https://github.com/apache/cordova-plugin-statusbar
 
 --mapa Nativo
 https://github.com/mapsplugin/cordova-plugin-googlemaps
+
+--barra transparente
+https://github.com/ekuwang/cordova-plugin-statusbar
