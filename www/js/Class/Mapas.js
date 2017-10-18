@@ -95,7 +95,7 @@ function onMapReady() {
 	pegarposicaoNATIVO();
 }
 
-
+var statuspainel = 1;
 function mapaWeb(dimap) {
 			 
 		var mapOptions = {
@@ -110,8 +110,7 @@ function mapaWeb(dimap) {
 		map = new google.maps.Map(dimap, mapOptions);
 		
 		//caixa de pesquisa
-		var input = document.getElementById('pac-input');
-		map.controls[google.maps.ControlPosition.TOP_CENTER].push(input);
+		 addpanel();
 		
 		//botão de pesquisa
 		var sBUtton = document.getElementById('searchBUtton');
@@ -126,7 +125,13 @@ function mapaWeb(dimap) {
 		//evento click do botão
 		$( "#searchBUtton" ).click(function() {
 		   //mostra a barra de pesquisa
-		   $("#pac-input").show();
+		    if(statuspainel == 1){
+			    map.controls[google.maps.ControlPosition.TOP_CENTER].clear();
+			    statuspainel = 0;
+		    }else{
+			    addpanel();
+			    statuspainel = 1;
+		    }
 		});
 		
 		
@@ -146,6 +151,17 @@ function mapaWeb(dimap) {
 			$("#pac-input").hide();
 		});		
 }
+
+function addpanel(){
+		var itd=document.createElement('div');
+			itd.id = "pac-input";
+			itd.classList.add('round-button');
+			ita=document.createElement('img');
+			ita.setAttribute("src", "img/search.png");
+			itd.appendChild(ita);
+	
+			map.controls[google.maps.ControlPosition.TOP_CENTER].push(itd);
+	}
 
 //variavel axuliar, não mexe
 var aux;
