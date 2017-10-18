@@ -148,7 +148,7 @@ function mapaWeb(dimap) {
 		
 		map.addListener('click', function(e) {
 			$("#pac-input").blur();
-			$("#pac-input").hide();
+			map.controls[google.maps.ControlPosition.TOP_CENTER].clear();
 		});		
 }
 
