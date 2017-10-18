@@ -109,12 +109,25 @@ function mapaWeb(dimap) {
 		//cria instancia do mapa
 		map = new google.maps.Map(dimap, mapOptions);
 		
-		//adiciona o painel flutuante
+		//caixa de pesquisa
 		var input = document.getElementById('pac-input');
 		map.controls[google.maps.ControlPosition.TOP_CENTER].push(input);
+		
+		//botão de pesquisa
+		var sBUtton = document.getElementById('searchBUtton');
+		map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(sBUtton);
+		
+		//espera um tempo para o botão não aparecer primeiro
 		setTimeout(function(){ 
-				$("#pac-input").show();
-		}, 400);
+			//mostra o botão no mapa
+			$("searchBUtton").show();
+		}, 500);
+		
+		//evento click do botão
+		$( "#searchBUtton" ).click(function() {
+		   //mostra a barra de pesquisa
+		   $("#pac-input").show();
+		});
 		
 		
 		//espera o mapa carregar
