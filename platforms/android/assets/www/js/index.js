@@ -19,7 +19,6 @@ var busicon = "./img/bussicon.png";
 var busstopicon = "./img/busstop.png";
 var dimap = document.getElementById('map');
 var Infor = document.getElementById('myModal');
-var dimap2 = document.getElementById('map');
 
 //instancia a classe de alertas
 var alerts = new AlertsClass();
@@ -31,7 +30,10 @@ var infowindowweb;
 var contentString2 = '<div id="content">'+'<div id="siteNotice">'+ '</div>'+'<h1 id="firstHeading" class="firstHeading">Voce está aqui</h1>'+'<div id="bodyContent">'+'</div>';
 
 //pra saber se esta aberto o mapa web ou nativo
-var tipomapa;
+var tipomapa = 1;
+
+//para verificar se o painel de pesquisa está visivel
+var statuspainel = 0;
 
 
 //rotas cadastradas
@@ -134,49 +136,52 @@ document.addEventListener("deviceready", function() {
 		iniciaMapaWeb();
 	}else{
 		tipomapa=1;
-		$("#mapnativo").show();
-		myMap.abrirMapa(tipomapa,dimap2);
+		myMap.abrirMapa(tipomapa,dimap);
 	}
 	
-	//eventos dos botoes	
-	eventosBotoes();
+	if(tipomapa == 0){
 	
-	//fehar do popup
-	var span = document.getElementsByClassName("close")[0];
-	span.onclick = function() {
-		Infor.style.display = "none";
-	}
-
-	window.onclick = function(event) {
-		if (event.target == Infor) {
+		//eventos dos botoes	
+		eventoBotao();
+	
+		//fehar do popup
+		var span = document.getElementsByClassName("close")[0];
+		span.onclick = function() {
 			Infor.style.display = "none";
+		}
+
+		window.onclick = function(event) {
+			if (event.target == Infor) {
+				Infor.style.display = "none";
+			}	
 		}
 	}
 			
 }, false);
 
 
-function eventosBotoes(){
+function eventoBotao(){
 	//começar a desenhar as roras
 	$( "#comRota" ).click(function() {
 		Infor.style.display = "none";
 		comecarrota();
 	});
-	
-	$("#pac-input").on('input',function(e){
-		var chavevetor = parseInt(chavePorValor(words,$(this).val()));
+}
+
+function procuraRotas(e){
+	var chavevetor = parseInt(chavePorValor(words,e.value));
 		if (chavevetor || chavevetor == 0 ){
 			//se a infowindo estiver aberta fecha
 			if(tipomapa == 0){infowindowweb.close();}
 			//tira o foco do campo de texto
 			$("#pac-input").blur();
+			map.controls[google.maps.ControlPosition.TOP_CENTER].clear();
+			statuspainel = 0;
 			//colocar as rotas no mapa		
 			
 			selecionarRotas(chavevetor);
 			desenhaNoMap(asrotas[chavevetor].v,ospontos[chavevetor].v,ospontos[chavevetor].cs);
 		}
-	});
-		
 }
 	
 	var shots = 0;
@@ -189,7 +194,7 @@ function eventosBotoes(){
 			contatoComServidor();
 			setTimeout(function(){ 
 				if (shots<3){
-					alerts.alertar("Tentando receber a localização do ônibous");
+					if (shots==0) { alerts.showBottom("Tentando receber a localização do ônibous");}
 					selecionarRotas(chave);
 					shots++;
 				} else {
@@ -438,6 +443,13 @@ function colocarosmarkerWEB(contentString,locations,omap){
 				cacheDestLat = locations[i].lat;
 				cacheDestLng = locations[i].lng;
 				
+				$("#pac-input").blur();
+				map.controls[google.maps.ControlPosition.TOP_CENTER].clear();
+				statuspainel = 0;
+				
+				//se a infowindo estiver aberta fecha
+				if(tipomapa == 0){infowindowweb.close();}
+				
 				//atualiza dados e cria o popup
 				document.getElementById("title").innerHTML = contentString[0].title;
 				document.getElementById("tar").innerHTML = contentString[0].tari;
@@ -538,8 +550,6 @@ function onOnline() {
 		
 		map.clear();
 		map.off();
-		$("#mapnativo").remove();
-		$("#mapnativo").hide();
 		$("#map").show();
 
 		iniciaMapaWeb();
@@ -551,7 +561,6 @@ function onOnline() {
 //inicia o mapa web
 function iniciaMapaWeb(){
 	tipomapa=0;
-	$("#map").show();
 	myMap.abrirMapa(tipomapa,dimap);
 }
 

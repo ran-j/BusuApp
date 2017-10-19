@@ -11,8 +11,7 @@
         <title>Busu</title>
     </head>
    <body>
- 
-	<input id="pac-input" class="controls hidden" list="browsers" type="text"  data-list-focus="true"  placeholder="Digite o nome da rota">
+ 	 
 		<datalist id="browsers">
 			 <option>Jockey X Santa Rosa</option>
 			 <option>Parque Aurora X Leao</option>
@@ -35,14 +34,14 @@
 			 <option>Sto Eduardo</option>
 			 <option>Rodoviária X Travessão</option>
 		</datalist> 
-	</input>
+	 
 	
     <div id="map"></div>
 	
 	<div id="myModal" class="modal">
 
 		<!-- Modal content -->
-		<div class="modal-content">
+		<div class="modal-content animated zoomIn">
 			<span class="close">&times;</span>
 			<p class="titulo" id="title"></p>
 	
@@ -64,6 +63,12 @@
 			</div>
 		</div>
 		<button class="button" id="comRota"><b>Criar Rota</b></button>
+	</div>
+	
+	<div id="searchBUtton" class="round-button">
+		<a>
+			<img src="img/search.png" alt="Home" />
+		</a>
 	</div>
 	 
 	<script src="cordova.js"></script>	

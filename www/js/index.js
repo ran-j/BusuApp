@@ -32,6 +32,9 @@ var contentString2 = '<div id="content">'+'<div id="siteNotice">'+ '</div>'+'<h1
 //pra saber se esta aberto o mapa web ou nativo
 var tipomapa = 1;
 
+//para verificar se o painel de pesquisa está visivel
+var statuspainel = 0;
+
 
 //rotas cadastradas
 var words = ["Jockey X Santa Rosa",	
@@ -139,7 +142,7 @@ document.addEventListener("deviceready", function() {
 	if(tipomapa == 0){
 	
 		//eventos dos botoes	
-		eventosBotoes();
+		eventoBotao();
 	
 		//fehar do popup
 		var span = document.getElementsByClassName("close")[0];
@@ -157,15 +160,16 @@ document.addEventListener("deviceready", function() {
 }, false);
 
 
-function eventosBotoes(){
+function eventoBotao(){
 	//começar a desenhar as roras
 	$( "#comRota" ).click(function() {
 		Infor.style.display = "none";
 		comecarrota();
 	});
-	
-	$("#pac-input").on('input',function(e){
-		var chavevetor = parseInt(chavePorValor(words,$(this).val()));
+}
+
+function procuraRotas(e){
+	var chavevetor = parseInt(chavePorValor(words,e.value));
 		if (chavevetor || chavevetor == 0 ){
 			//se a infowindo estiver aberta fecha
 			if(tipomapa == 0){infowindowweb.close();}
@@ -178,8 +182,6 @@ function eventosBotoes(){
 			selecionarRotas(chavevetor);
 			desenhaNoMap(asrotas[chavevetor].v,ospontos[chavevetor].v,ospontos[chavevetor].cs);
 		}
-	});
-		
 }
 	
 	var shots = 0;
@@ -192,7 +194,7 @@ function eventosBotoes(){
 			contatoComServidor();
 			setTimeout(function(){ 
 				if (shots<3){
-					alerts.alertar("Tentando receber a localização do ônibous");
+					if (shots==0) { alerts.showBottom("Tentando receber a localização do ônibous");}
 					selecionarRotas(chave);
 					shots++;
 				} else {
@@ -440,6 +442,14 @@ function colocarosmarkerWEB(contentString,locations,omap){
 				//salva a lt e lng do macardor clicado
 				cacheDestLat = locations[i].lat;
 				cacheDestLng = locations[i].lng;
+				
+				//limpa o painel da tela
+				$("#pac-input").blur();
+				map.controls[google.maps.ControlPosition.TOP_CENTER].clear();
+				statuspainel = 0;
+				
+				//se a infowindo estiver aberta fecha
+				if(tipomapa == 0){infowindowweb.close();}
 				
 				//atualiza dados e cria o popup
 				document.getElementById("title").innerHTML = contentString[0].title;

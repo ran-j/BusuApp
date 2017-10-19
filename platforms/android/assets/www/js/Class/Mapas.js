@@ -95,25 +95,41 @@ function onMapReady() {
 	pegarposicaoNATIVO();
 }
 
-
 function mapaWeb(dimap) {
 			 
 		var mapOptions = {
 			center: new google.maps.LatLng(-21.7634634,-41.3188553),
 			zoom: 14,
 			mapTypeId: google.maps.MapTypeId.ROADMAP,
-			disableDefaultUI: true
+			disableDefaultUI: true,
+			streetViewControl: true
 		};
 
 		//cria instancia do mapa
 		map = new google.maps.Map(dimap, mapOptions);
+				
+		//botão de pesquisa
+		var sBUtton = document.getElementById('searchBUtton');
+		map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(sBUtton);
 		
-		//adiciona o painel flutuante
-		var input = document.getElementById('pac-input');
-		map.controls[google.maps.ControlPosition.TOP_CENTER].push(input);
+		//espera um tempo para o botão não aparecer primeiro
 		setTimeout(function(){ 
-				$("#pac-input").show();
-		}, 400);
+			//mostra o botão no mapa
+			$("searchBUtton").show();
+		}, 500);
+		
+		//evento click do botão
+		$( "#searchBUtton" ).click(function() {
+			infowindowweb.close();
+		   //mostra a barra de pesquisa
+		    if(statuspainel == 1){
+			    map.controls[google.maps.ControlPosition.TOP_CENTER].clear();
+			    statuspainel = 0;
+		    }else{
+			    addpanel();
+			    statuspainel = 1;
+		    }
+		});
 		
 		
 		//espera o mapa carregar
@@ -129,7 +145,21 @@ function mapaWeb(dimap) {
 		
 		map.addListener('click', function(e) {
 			$("#pac-input").blur();
+			map.controls[google.maps.ControlPosition.TOP_CENTER].clear();
+			statuspainel = 0;
+			infowindowweb.close();
 		});		
+}
+
+function addpanel(){
+	var principal=document.createElement('input');
+		principal.id = "pac-input";
+		principal.classList.add('controls');
+		principal.setAttribute("list", "browsers");
+		principal.setAttribute("placeholder", "Selecione uma rota");
+		principal.setAttribute("oninput", "procuraRotas(this)");
+					 
+		map.controls[google.maps.ControlPosition.TOP_CENTER].push(principal);
 }
 
 //variavel axuliar, não mexe

@@ -46,7 +46,7 @@
     </feature>
     <name>Busu</name>
     <description>
-         Aplicativo que mostra pontos e horarios de ônibus
+         Aplicativo que mostra pontos e horarios de ônibus.
     </description>
     <author email="dev@cordova.apache.org" href="http://cordova.io">
         CEPECAM

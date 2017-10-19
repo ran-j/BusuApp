@@ -95,7 +95,6 @@ function onMapReady() {
 	pegarposicaoNATIVO();
 }
 
-var statuspainel = 1;
 function mapaWeb(dimap) {
 			 
 		var mapOptions = {
@@ -108,10 +107,7 @@ function mapaWeb(dimap) {
 
 		//cria instancia do mapa
 		map = new google.maps.Map(dimap, mapOptions);
-		
-		//caixa de pesquisa
-		 addpanel();
-		
+				
 		//botão de pesquisa
 		var sBUtton = document.getElementById('searchBUtton');
 		map.controls[google.maps.ControlPosition.RIGHT_BOTTOM].push(sBUtton);
@@ -124,6 +120,7 @@ function mapaWeb(dimap) {
 		
 		//evento click do botão
 		$( "#searchBUtton" ).click(function() {
+			infowindowweb.close();
 		   //mostra a barra de pesquisa
 		    if(statuspainel == 1){
 			    map.controls[google.maps.ControlPosition.TOP_CENTER].clear();
@@ -150,19 +147,20 @@ function mapaWeb(dimap) {
 			$("#pac-input").blur();
 			map.controls[google.maps.ControlPosition.TOP_CENTER].clear();
 			statuspainel = 0;
+			infowindowweb.close();
 		});		
 }
 
 function addpanel(){
-		var itd=document.createElement('div');
-			itd.id = "pac-input";
-			itd.classList.add('round-button');
-			ita=document.createElement('img');
-			ita.setAttribute("src", "img/search.png");
-			itd.appendChild(ita);
-	
-			map.controls[google.maps.ControlPosition.TOP_CENTER].push(itd);
-	}
+	var principal=document.createElement('input');
+		principal.id = "pac-input";
+		principal.classList.add('controls');
+		principal.setAttribute("list", "browsers");
+		principal.setAttribute("placeholder", "Selecione uma rota");
+		principal.setAttribute("oninput", "procuraRotas(this)");
+					 
+		map.controls[google.maps.ControlPosition.TOP_CENTER].push(principal);
+}
 
 //variavel axuliar, não mexe
 var aux;
