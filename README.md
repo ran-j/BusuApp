@@ -31,8 +31,16 @@ https://github.com/mapsplugin/cordova-plugin-googlemaps
 --barra transparente
 https://github.com/ekuwang/cordova-plugin-statusbar
 
+Status do trabalho :
 
-![alt text](https://scontent-gru2-2.xx.fbcdn.net/v/t34.0-12/22656383_1480767352006881_2016083947_n.png?oh=618699d5b38e978de246000b6f3923cc&oe=59E94AD9)
+![alt text](https://scontent.fcaw2-1.fna.fbcdn.net/v/t34.0-12/22627652_1481563371927279_253132512_n.png?oh=0b534599d3a2e22c0367b86effce4d9e&oe=59EB1F15)
 
+![alt text](https://scontent.fcaw2-1.fna.fbcdn.net/v/t34.0-12/22686464_1481563488593934_1233836507_n.png?oh=ce48e1c3526e1c21f4f833ce9cd03fc7&oe=59E9F29A)
+
+![alt text](https://scontent.fcaw2-1.fna.fbcdn.net/v/t34.0-12/22635134_1481563505260599_1941812705_n.png?oh=5a72bfadcb619b326ad8f10705b2a063&oe=59EA4011)
+
+![alt text](https://scontent.fcaw2-1.fna.fbcdn.net/v/t34.0-12/22635134_1481563505260599_1941812705_n.png?oh=5a72bfadcb619b326ad8f10705b2a063&oe=59EA4011)
 
 ![alt text](https://scontent-gru2-2.xx.fbcdn.net/v/t34.0-12/22657324_1480767292006887_342472200_n.png?oh=30a762211b3786b008ff9fc69e54f11b&oe=59E98CAF)
+
+
