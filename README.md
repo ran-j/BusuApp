@@ -39,8 +39,6 @@ Status do trabalho :
 
 ![alt text](https://scontent.fcaw2-1.fna.fbcdn.net/v/t34.0-12/22635134_1481563505260599_1941812705_n.png?oh=5a72bfadcb619b326ad8f10705b2a063&oe=59EA4011)
 
-![alt text](https://scontent.fcaw2-1.fna.fbcdn.net/v/t34.0-12/22635134_1481563505260599_1941812705_n.png?oh=5a72bfadcb619b326ad8f10705b2a063&oe=59EA4011)
-
 ![alt text](https://scontent-gru2-2.xx.fbcdn.net/v/t34.0-12/22657324_1480767292006887_342472200_n.png?oh=30a762211b3786b008ff9fc69e54f11b&oe=59E98CAF)
 
 
