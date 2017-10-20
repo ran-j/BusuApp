@@ -155,8 +155,11 @@ document.addEventListener("deviceready", function() {
 				Infor.style.display = "none";
 			}	
 		}
+		
+		//para não fechar o app ao apertar o botao voltar
+		document.addEventListener("backbutton", LimpaCampoPesquisa, false);
 	}
-			
+				
 }, false);
 
 
@@ -173,15 +176,19 @@ function procuraRotas(e){
 		if (chavevetor || chavevetor == 0 ){
 			//se a infowindo estiver aberta fecha
 			if(tipomapa == 0){infowindowweb.close();}
-			//tira o foco do campo de texto
-			$("#pac-input").blur();
-			map.controls[google.maps.ControlPosition.TOP_CENTER].clear();
-			statuspainel = 0;
-			//colocar as rotas no mapa		
 			
+			LimpaCampoPesquisa();
+			//colocar as rotas no mapa		
 			selecionarRotas(chavevetor);
 			desenhaNoMap(asrotas[chavevetor].v,ospontos[chavevetor].v,ospontos[chavevetor].cs);
 		}
+}
+
+function LimpaCampoPesquisa(){
+	//tira o foco do campo de texto
+	$("#pac-input").blur();
+	map.controls[google.maps.ControlPosition.TOP_CENTER].clear();
+	statuspainel = 0;
 }
 	
 	var shots = 0;
@@ -443,10 +450,7 @@ function colocarosmarkerWEB(contentString,locations,omap){
 				cacheDestLat = locations[i].lat;
 				cacheDestLng = locations[i].lng;
 				
-				//limpa o painel da tela
-				$("#pac-input").blur();
-				map.controls[google.maps.ControlPosition.TOP_CENTER].clear();
-				statuspainel = 0;
+				LimpaCampoPesquisa();
 				
 				//se a infowindo estiver aberta fecha
 				if(tipomapa == 0){infowindowweb.close();}
