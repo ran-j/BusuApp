@@ -52,6 +52,9 @@ body {
     }
 }
 
+select {
+  text-indent: 30%;
+}
 
 #map {
     height: 100%;
