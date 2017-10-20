@@ -20,14 +20,24 @@
     <platform name="android">
         <allow-intent href="market:*" />
         <preference name="StatusBarOverlaysWebView" value="true" />
+        <splash density="land-hdpi" src="res/screen/android/landhdpi.png" />
+        <splash density="land-ldpi" src="res/screen/android/landldpi.png" />
+        <splash density="land-mdpi" src="res/screen/android/landmdpi.png" />
+        <splash density="land-xhdpi" src="res/screen/android/landxhdpi.png" />
+        <splash density="port-hdpi" src="res/screen/android/porthdpi.png" />
+        <splash density="port-ldpi" src="res/screen/android/portldpi.png" />
+        <splash density="port-mdpi" src="res/screen/android/portmdpi.png" />
+        <splash density="port-xhdpi" src="res/screen/android/portxhdpi.png" />
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
     </platform>
+    <preference name="SplashScreenDelay" value="10000" />
     <engine name="android" spec="^6.1.2" />
     <plugin name="cordova-plugin-geolocation" spec="~2.4.2" />
     <plugin name="cordova-plugin-whitelist" spec="1" />
     <plugin name="cordova-plugin-device" spec="^1.1.6" />
     <plugin name="cordova-plugin-statusbar-master" spec="^2.2.3" />
+    <plugin name="cordova-plugin-splashscreen" spec="^4.0.3" />
 </widget>

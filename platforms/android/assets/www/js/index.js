@@ -1,3 +1,10 @@
+
+//splash screen
+window.setTimeout(function () {
+    navigator.splashscreen.hide();
+}, 3000);
+
+
 //variaveis globais
 
 var watchID;

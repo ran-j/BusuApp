@@ -10,14 +10,16 @@
       "cordova-plugin-geolocation": {},
       "cordova-plugin-whitelist": {},
       "cordova-plugin-device": {},
-      "cordova-plugin-statusbar-master": {}
+      "cordova-plugin-statusbar-master": {},
+      "cordova-plugin-splashscreen": {}
     }
   },
   "dependencies": {
     "cordova-android": "^6.1.2",
     "cordova-plugin-device": "^1.1.6",
     "cordova-plugin-geolocation": "~2.4.2",
-    "cordova-plugin-whitelist": "1",
-    "cordova-plugin-statusbar-master": "^2.2.3"
+    "cordova-plugin-splashscreen": "^4.0.3",
+    "cordova-plugin-statusbar-master": "^2.2.3",
+    "cordova-plugin-whitelist": "1"
   }
 }

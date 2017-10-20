@@ -40,6 +40,10 @@
     <feature name="StatusbarTransparent">
         <param name="android-package" value="net.ekuwang.cordova.plugin.statusbar.StatusbarTransparent" />
     </feature>
+    <feature name="SplashScreen">
+        <param name="android-package" value="org.apache.cordova.splashscreen.SplashScreen" />
+        <param name="onload" value="true" />
+    </feature>
     <feature name="Diagnostic">
         <param name="android-package" value="cordova.plugins.Diagnostic" />
         <param name="onload" value="true" />
@@ -62,6 +66,15 @@
     <access origin="*.google.com" />
     <access origin="*.googleapis.com" />
     <allow-intent href="market:*" />
+    <splash density="land-hdpi" src="res/screen/android/landhdpi.png" />
+    <splash density="land-ldpi" src="res/screen/android/landldpi.png" />
+    <splash density="land-mdpi" src="res/screen/android/landmdpi.png" />
+    <splash density="land-xhdpi" src="res/screen/android/landxhdpi.png" />
+    <splash density="port-hdpi" src="res/screen/android/porthdpi.png" />
+    <splash density="port-ldpi" src="res/screen/android/portldpi.png" />
+    <splash density="port-mdpi" src="res/screen/android/portmdpi.png" />
+    <splash density="port-xhdpi" src="res/screen/android/portxhdpi.png" />
     <preference name="loglevel" value="DEBUG" />
+    <preference name="SplashScreenDelay" value="10000" />
     <preference name="StatusBarOverlaysWebView" value="true" />
 </widget>
