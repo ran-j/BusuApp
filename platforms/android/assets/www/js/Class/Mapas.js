@@ -102,7 +102,6 @@ function mapaWeb(dimap) {
 			zoom: 14,
 			mapTypeId: google.maps.MapTypeId.ROADMAP,
 			disableDefaultUI: true,
-			streetViewControl: true
 		};
 
 		//cria instancia do mapa
@@ -148,19 +147,36 @@ function mapaWeb(dimap) {
 			map.controls[google.maps.ControlPosition.TOP_CENTER].clear();
 			statuspainel = 0;
 			infowindowweb.close();
-		});		
+		});				
 }
 
-function addpanel(){
-	var principal=document.createElement('input');
-		principal.id = "pac-input";
-		principal.classList.add('controls');
-		principal.setAttribute("list", "browsers");
-		principal.setAttribute("placeholder", "Selecione uma rota");
-		principal.setAttribute("oninput", "procuraRotas(this)");
-					 
-		map.controls[google.maps.ControlPosition.TOP_CENTER].push(principal);
+function addpanel(){	
+		var selectList = document.createElement("select");
+		selectList.id = "pac-input";
+		selectList.classList.add('controls');
+		selectList.setAttribute("onchange", "procuraRotas(this.value)");
+				
+		for (var i = -1; i < words.length; i++) {
+			var option = document.createElement("option");
+			if(i==-1){
+				option.value = "";
+				option.text = "Selecione uma rota";
+				option.disabled = false;
+				selectList.appendChild(option);
+			}else{
+				option.value = words[i];
+				option.text = words[i];
+				selectList.appendChild(option);
+			}
+		}
+		
+		map.controls[google.maps.ControlPosition.TOP_CENTER].push(selectList);
 }
+
+function updatePTag(e){
+    //clickedElement.innerHTML = this.value;
+	alert(e);
+};
 
 //variavel axuliar, não mexe
 var aux;
@@ -308,7 +324,7 @@ function veriifiloop(){
 //solicitar localização do mapa web
 function pegarposicaoWEB() {
 
-	navigator.geolocation.getCurrentPosition(onLocationSuccessWEB, erroWEB, { maximumAge: 5000, timeout: 3000, enableHighAccuracy: true });
+	navigator.geolocation.getCurrentPosition(onLocationSuccessWEB, erroWEB, { timeout: 5000, enableHighAccuracy: true });
 		
 }
 
@@ -341,8 +357,8 @@ function onLocationSuccessNativo( result ) {
 
 //erro do mapa web
 function erroWEB(erro){
-	alertasr.alertar( 'code: '    + error.code    + '\n' +
-              'message: ' + error.message + '\n');
+	console.log("Deu erro ao pegar posição");
+	pegarposicaoWEB();
 }
 
 //erro do mapa nativo

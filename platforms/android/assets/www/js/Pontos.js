@@ -47,7 +47,7 @@
 		{lat: -21.7647308, lng: -41.3366947, title : 'Ponto 8'}
 	];
 	var pontostextecs = [ 
-		{ tari : 'R$ 2.75', hor : '40 min', title : 'Rota Genérico' }
+		{ tari : 'R$ 2.75', hor : '40 min', title : 'Rota Genérica' }
 	];
 	  
 	 

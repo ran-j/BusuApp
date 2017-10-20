@@ -85,25 +85,25 @@ var words = ["Jockey X Santa Rosa",
 		
 	var ospontos = [
 		{k: 0, v: pontostexte, cs: jockeyXSantaRosacs },
-		{k: 1, v: locatonList, cs: pontostextecs },
+		{k: 1, v: pontosx, cs: pontostextecs },
 		{k: 2, v: locatonList, cs: pontostextecs },
 		{k: 3, v: pontostexte, cs: pontostextecs },
-		{k: 4, v: pontostexte, cs: pontostextecs },
+		{k: 4, v: pontosx, cs: pontostextecs },
 		{k: 5, v: pontostexte, cs: pontostextecs },
-		{k: 6, v: pontostexte, cs: pontostextecs },
-		{k: 7, v: pontostexte, cs: pontostextecs },
+		{k: 6, v: pontosx, cs: pontostextecs },
+		{k: 7, v: pontosx, cs: pontostextecs },
 		{k: 8, v: pontostexte, cs: pontostextecs },
 		{k: 9, v: pontostexte, cs: pontostextecs },
-		{k: 10, v: pontostexte, cs: pontostextecs },
+		{k: 10, v: pontosx, cs: pontostextecs },
 		{k: 11, v: pontostexte, cs: pontostextecs },
 		{k: 12, v: pontostexte, cs: pontostextecs },
-		{k: 13, v: pontostexte, cs: pontostextecs },
+		{k: 13, v: pontosx, cs: pontostextecs },
 		{k: 14, v: pontostexte, cs: pontostextecs },
-		{k: 15, v: pontostexte, cs: pontostextecs },
-		{k: 16, v: pontostexte, cs: pontostextecs },
-		{k: 17, v: pontostexte, cs: pontostextecs },
+		{k: 15, v: pontosx, cs: pontostextecs },
+		{k: 16, v: pontosx, cs: pontostextecs },
+		{k: 17, v: pontosx, cs: pontostextecs },
 		{k: 18, v: pontostexte, cs: pontostextecs },
-		{k: 19, v: pontostexte, cs: pontostextecs }
+		{k: 19, v: pontosx, cs: pontostextecs }
 	];
 
  
@@ -169,7 +169,7 @@ function eventoBotao(){
 }
 
 function procuraRotas(e){
-	var chavevetor = parseInt(chavePorValor(words,e.value));
+	var chavevetor = parseInt(chavePorValor(words,e));
 		if (chavevetor || chavevetor == 0 ){
 			//se a infowindo estiver aberta fecha
 			if(tipomapa == 0){infowindowweb.close();}
@@ -443,6 +443,7 @@ function colocarosmarkerWEB(contentString,locations,omap){
 				cacheDestLat = locations[i].lat;
 				cacheDestLng = locations[i].lng;
 				
+				//limpa o painel da tela
 				$("#pac-input").blur();
 				map.controls[google.maps.ControlPosition.TOP_CENTER].clear();
 				statuspainel = 0;

@@ -169,7 +169,7 @@ function eventoBotao(){
 }
 
 function procuraRotas(e){
-	var chavevetor = parseInt(chavePorValor(words,e.value));
+	var chavevetor = parseInt(chavePorValor(words,e));
 		if (chavevetor || chavevetor == 0 ){
 			//se a infowindo estiver aberta fecha
 			if(tipomapa == 0){infowindowweb.close();}
