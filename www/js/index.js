@@ -7,6 +7,9 @@ window.setTimeout(function () {
 
 //variaveis globais
 
+//salvar preferencias
+var storage = window.localStorage;
+
 var watchID;
 var latAtual;
 var lngAtual;
@@ -26,6 +29,7 @@ var busicon = "./img/bussicon.png";
 var busstopicon = "./img/busstop.png";
 var dimap = document.getElementById('map');
 var Infor = document.getElementById('myModal');
+var termo = document.getElementById('Otermo'); 
 
 //instancia a classe de alertas
 var alerts = new AlertsClass();
@@ -114,7 +118,7 @@ var words = ["Jockey X Santa Rosa",
 	];
 
  
-//inicio de tudo
+//inicio de tudo vulgo Main()
 document.addEventListener("deviceready", function() {  
 	//erro hanndler
 	window.onerror = function(msg, url, line, col, error) {
@@ -129,7 +133,49 @@ document.addEventListener("deviceready", function() {
  
 		return suppressErrorAlert;
 	};
+	
+	
+	//verifica se e a primeira vez q o app abre
+	var vez = storage.getItem("R"); 
+	if(vez == null && vez != "Segundavez"){
+		termo.style.display = "block";
+	}else{
+		//continua o app
+		Main();
+	}
+	 
+	
+				
+}, false);
 
+//responsavel pelo termo de compromisso
+function validateForm(){
+	if (document.TermoForm.opcao[0].checked == true) {
+		console.log("Termo aceito");
+		
+		//libera acesso ao app
+		storage.setItem("R", "Segundavez");
+		
+		//prossegue com o app
+		Main();
+		//fecha o popup
+		termo.style.display = "none";
+		
+	}else if (document.TermoForm.opcao[1].checked == true){
+		console.log("Termo não aceito");
+		
+		//fecha o popup
+		termo.style.display = "none";	
+		
+		//fecha o app
+		navigator.app.exitApp();
+	}else{
+		alerts.alertar("Por favor, escolha uma opção.");
+	}
+	return false;
+}
+
+function Main(){
 	//deixar a barra transparente
 	statusbarTransparent.toggle(); 
 	statusbarTransparent.enable();
@@ -148,9 +194,12 @@ document.addEventListener("deviceready", function() {
 	
 	if(tipomapa == 0){
 	
-		//eventos dos botoes	
-		eventoBotao();
-	
+		//começar a desenhar as roras
+		$( "#comRota" ).click(function() {
+			Infor.style.display = "none";
+			comecarrota();
+		});
+		
 		//fehar do popup
 		var span = document.getElementsByClassName("close")[0];
 		span.onclick = function() {
@@ -166,16 +215,6 @@ document.addEventListener("deviceready", function() {
 		//para não fechar o app ao apertar o botao voltar
 		document.addEventListener("backbutton", LimpaCampoPesquisa, false);
 	}
-				
-}, false);
-
-
-function eventoBotao(){
-	//começar a desenhar as roras
-	$( "#comRota" ).click(function() {
-		Infor.style.display = "none";
-		comecarrota();
-	});
 }
 
 function procuraRotas(e){
