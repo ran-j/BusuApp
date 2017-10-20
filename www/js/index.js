@@ -34,7 +34,7 @@ var alerts = new AlertsClass();
 var myMap = new MapaClass(alerts);
 //infowindo do mapa web
 var infowindowweb;
-var contentString2 = '<div id="content">'+'<div id="siteNotice">'+ '</div>'+'<h1 id="firstHeading" class="firstHeading">Voce está aqui</h1>'+'<div id="bodyContent">'+'</div>';
+var contentString2 = '<div id="content">'+'Voce está aqui'+'</div>';
 
 //pra saber se esta aberto o mapa web ou nativo
 var tipomapa = 1;
