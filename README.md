@@ -31,7 +31,12 @@ https://github.com/mapsplugin/cordova-plugin-googlemaps
 --barra transparente
 https://github.com/ekuwang/cordova-plugin-statusbar
 
+--splashscreen
+https://github.com/apache/cordova-plugin-splashscreen
+
 Status do trabalho :
+
+![alt text](https://scontent.fcaw2-1.fna.fbcdn.net/v/t34.0-12/22684735_1483069605109989_99765527_n.png?oh=1400533da504e39fad294d8849ee404d&oe=59EBEA60)
 
 ![alt text](https://scontent.fcaw2-1.fna.fbcdn.net/v/t34.0-12/22684953_1482346465182303_1359839730_n.png?oh=26c065c5ae778c8b95a3806f20207290&oe=59EC7E0C)
 
