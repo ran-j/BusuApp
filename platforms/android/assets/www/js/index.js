@@ -1,10 +1,4 @@
 
-//splash screen
-window.setTimeout(function () {
-    navigator.splashscreen.hide();
-}, 3000);
-
-
 //variaveis globais
 
 //salvar preferencias
@@ -116,10 +110,12 @@ var words = ["Jockey X Santa Rosa",
 		{k: 18, v: pontostexte, cs: pontostextecs },
 		{k: 19, v: pontosx, cs: pontostextecs }
 	];
-
  
 //inicio de tudo vulgo Main()
 document.addEventListener("deviceready", function() {  
+
+	//n deixa o celular ficar de lado
+	screen.orientation.lock('portrait-primary');
 	//erro hanndler
 	window.onerror = function(msg, url, line, col, error) {
 		var extra = !col ? '' : '\ncolumn: ' + col;
@@ -133,8 +129,7 @@ document.addEventListener("deviceready", function() {
  
 		return suppressErrorAlert;
 	};
-	
-	
+		
 	//verifica se e a primeira vez q o app abre
 	var vez = storage.getItem("R"); 
 	if(vez == null && vez != "Segundavez"){
@@ -142,6 +137,11 @@ document.addEventListener("deviceready", function() {
 	}else{
 		//continua o app
 		Main();
+		//splash screen
+		window.setTimeout(function () {
+			navigator.splashscreen.hide();
+		}, 2000);
+		
 	}
 	 
 	
@@ -170,7 +170,7 @@ function validateForm(){
 		//fecha o app
 		navigator.app.exitApp();
 	}else{
-		alerts.alertar("Por favor, escolha uma opção");
+		alerts.alertar("Por favor, escolha uma opção.");
 	}
 	return false;
 }
