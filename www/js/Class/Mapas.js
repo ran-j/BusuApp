@@ -19,20 +19,10 @@ MapaClass = function(alerts){//responsalvel pelos mapas
 		
 		if(tipodemapa==0){
 			console.log("Mapa WEB");
-			
 			carregaAPIgoogle(chavesAPI[chaveAPIusada].v);
-			
-		}else{
-			console.log("Mapa NATIVO");
-			
-			mapaNativo(dimap);
 		}
 	}
 	
-	this.animecaoMapa = function(alvo){
-		animaCamNativo(alvo);	
-	}
-  
 }
 
 //carregar a API do google
@@ -66,33 +56,6 @@ function validarValordeChave(chave){
 		return true;
 	}
 	return false;	
-}
-  
-
-function mapaNativo(dimap){
-	 //verifica se o mapa está disponivel
-	 plugin.google.maps.Map.isAvailable(function(isAvailable, message) {
-		if (isAvailable) {
-			//cria o mapa
-			map = plugin.google.maps.Map.getMap(dimap);
-			map.addEventListener(plugin.google.maps.event.MAP_READY, onMapReady);
-		} else {
-			//manda erro pra teala
-			alertasr.alertar(message);
-			//tenta de novo
-			setTimeout(function(){ 
-				mapanativo(dimap);
-			}, 4000);
-		}
-	});
-}
-
-//função de quando o mapa nativo está pronto
-function onMapReady() {
-	tipomapa = 1;
-	console.log("Carregou o mapa nativo");
-	alertasr.alertar("Voce está usando a versão offline do aplicativo");
-	pegarposicaoNATIVO();
 }
 
 function mapaWeb(dimap) {
@@ -172,12 +135,6 @@ function addpanel(){
 		
 		map.controls[google.maps.ControlPosition.TOP_CENTER].push(selectList);
 }
-
-function updatePTag(e){
-    //clickedElement.innerHTML = this.value;
-	alert(e);
-};
-
 //variavel axuliar, não mexe
 var aux;
 //verifica se o GPS está ativo, só pro mapa WEB
@@ -328,13 +285,6 @@ function pegarposicaoWEB() {
 		
 }
 
-//solicitar localização do mapa nativo
-function pegarposicaoNATIVO() {
-	  var option = {enableHighAccuracy: true};
-	  map.getMyLocation(option, onLocationSuccessNativo, erroNATIVO);
-}
-
-
 //sucesso ao pegar a localização através do mapa web
 function onLocationSuccessWEB( position ) {
  
@@ -346,41 +296,10 @@ function onLocationSuccessWEB( position ) {
 	contatoComServidor();
 }
 
-//sucesso ao pegar a localização através do mapa nativo
-function onLocationSuccessNativo( result ) {
-	latAtual = result.latLng.lat;
-	lngAtual = result.latLng.lng;
-	//está no index.js
-	MapaNativoLocalizacao(latAtual,lngAtual);
-}
-
-
 //erro do mapa web
 function erroWEB(erro){
 	console.log("Deu erro ao pegar posição");
 	pegarposicaoWEB();
-}
-
-//erro do mapa nativo
-function erroNATIVO(erro){
-	alertasr.alertar( "Erro ao iniciar os modulos do mapa" );
-}
-
-
-//anivamação de camera para mapa nativo
-function animaCamNativo(targetanima){
-	//animação secundaria
-	/*map.animateCamera({
-		'target': targetanima,
-		'tilt': 50,
-		'zoom': 18,
-		'bearing': 160
-	});*/
-	
-	map.animateCamera({
-		'target': targetanima,
-		'zoom': 15,
-	});	
 }
 
 //handleEvent de erros do google maps

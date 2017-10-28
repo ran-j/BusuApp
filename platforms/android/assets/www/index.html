@@ -72,18 +72,24 @@
 	</div>
 	
 	<div id="Otermo" class="termo">
-	<div class="termo-content">
-		<p class="titulo"> Termo de compromisso</p>
-		
-		<p>Se não aceitar não usa.</p>
-    
-		<form name="TermoForm" onsubmit="return validateForm()">
-			<input type="radio" name="opcao" value="Eu aceito"> Eu Aceito<br>
-			<input type="radio" name="opcao" value="Eu não aceito"> Eu não aceito<br>
-			<input type="submit" value="Prosseguir" /> 
+		<div class="termo-content animated zoomIn">
+			<p style="text-align: center;font-size: 20px;"><b>Termo de Uso</b></p>
+			<div class="TextoTermo">
+				<p>Eu concordo e aceito com esse termo, caso eu não aceite eu não poderei usar esse app </p>
+			</div>
+			<form name="TermoForm" class="Formtermo" onsubmit="return validateForm()">
+					<div class="BtnCompromisso">
+						<input type="radio" value="Eu aceito" name="opcao" >
+						<label for="radio1">Eu Aceito</label>
+            
+						<input type="radio" value="Eu não aceito" name="opcao" >
+						<label for="radio1">Eu não aceito</label> 
+					</div>
+						</br>
+						<input type="submit" value="Prosseguir" />
+			
 			</form>
 		</div>
-
 	</div>
 	 
 	<script src="cordova.js"></script>	

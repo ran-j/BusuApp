@@ -113,9 +113,13 @@ var words = ["Jockey X Santa Rosa",
  
 //inicio de tudo vulgo Main()
 document.addEventListener("deviceready", function() {  
-
-	//n deixa o celular ficar de lado
-	screen.orientation.lock('portrait-primary');
+	try {
+		//n deixa o celular ficar de lado
+		screen.orientation.lock('portrait-primary');
+	} catch (error) {
+		// whatever
+	}
+	
 	//erro hanndler
 	window.onerror = function(msg, url, line, col, error) {
 		var extra = !col ? '' : '\ncolumn: ' + col;
@@ -140,8 +144,7 @@ document.addEventListener("deviceready", function() {
 		//splash screen
 		window.setTimeout(function () {
 			navigator.splashscreen.hide();
-		}, 2000);
-		
+		}, 10);
 	}
 	 
 	
@@ -189,7 +192,8 @@ function Main(){
 		iniciaMapaWeb();
 	}else{
 		tipomapa=1;
-		myMap.abrirMapa(tipomapa,dimap);
+		console.log("Mapa Inativo");
+		alerts.alertar("É necessário conexão com internet para utilizar esse aplicativo");
 	}
 	
 	if(tipomapa == 0){
@@ -237,72 +241,48 @@ function LimpaCampoPesquisa(){
 	statuspainel = 0;
 }
 	
-	var shots = 0;
-	function selecionarRotas(chave){
-		if (conectadoservidor == 1){
-			socket.removeAllListeners("listBus");
-			alerts.showBottom("Recebendo rotas do servidor.");
-			recebeRotas(chave);
-		} else {
-			contatoComServidor();
-			setTimeout(function(){ 
-				if (shots<3){
-					if (shots==0) { alerts.showBottom("Tentando receber a localização do ônibous");}
-					selecionarRotas(chave);
-					shots++;
-				} else {
-					alerts.alertar("Não foi possível receber as rotas do servidor");
-					shots = 0;
-					return
-				}
-			}, 9000);
+var shots = 0;
+function selecionarRotas(chave){
+	if (conectadoservidor == 1){
+		socket.removeAllListeners("listBus");
+		alerts.showBottom("Recebendo rotas do servidor.");
+		recebeRotas(chave);
+	} else {
+		contatoComServidor();
+		setTimeout(function(){ 
+			if (shots<3){
+				if (shots==0) { alerts.showBottom("Tentando receber a localização do ônibous");}
+				selecionarRotas(chave);
+				shots++;
+			} else {
+				alerts.alertar("Não foi possível receber as rotas do servidor");
+				shots = 0;
+				return
+			}
+		}, 9000);
 		}
 	}
 	
-	//função que desenha as rotas no mapa
-	function desenhaNoMap(asrotas,ospontosarray,ospontostxt){
+//função que desenha as rotas no mapa
+function desenhaNoMap(asrotas,ospontosarray,ospontostxt){
 		
-		if(tipomapa == 0){
+	if(tipomapa == 0){
 			
-			//limpa direction service
-			directionsDisplay.setMap(null);
-			directionsService = new google.maps.DirectionsService;
-			directionsDisplay = new google.maps.DirectionsRenderer({suppressMarkers: true});
-			directionsDisplay.setMap(map);
+		//limpa direction service
+		directionsDisplay.setMap(null);
+		directionsService = new google.maps.DirectionsService;
+		directionsDisplay = new google.maps.DirectionsRenderer({suppressMarkers: true});
+		directionsDisplay.setMap(map);
 
-			//desenha as rotas no mapa web 
-			criapontosdeentradaWEB(asrotas);
+		//desenha as rotas no mapa web 
+		criapontosdeentradaWEB(asrotas);
 				
-			//coloca os marcadores nos pontos no mapa web
-			colocarosmarkerWEB(ospontostxt,ospontosarray,map);
+		//coloca os marcadores nos pontos no mapa web
+		colocarosmarkerWEB(ospontostxt,ospontosarray,map);
 				
-		}else{
-			//limpar o mapa nativo
-			map.clear();
-			
-			//recoloca o marcador do usuáio no map
-			var outralatlng = new plugin.google.maps.LatLng(latAtual, lngAtual);
-			
-			map.addMarker({
-				position: outralatlng,
-				title: "Voce está aqui",
-				snippet: "Essa e sua ultima localização !",
-				icon: youicon,
-				'styles' : {
-					'text-align': 'center',
-					'color': 'blue'
-				}
-			}, function(marker) {			
-				//desenha as rotas no mapa nativo
-				criapontosdeentradaNATIVO(asrotas);
-			
-				//coloca os marcadores nos pontos no mapa nativo
-				colocarosmarkerNATIVO(ospontosarray);
-			});
-			
-		}
 	}
-      
+}
+
 //pegar a chave do array pelo valor
 function chavePorValor(obj, val) {
     for(var chave in obj) {
@@ -319,30 +299,6 @@ function contatoComServidor(){
 		carregaScript("https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js");
 	}
 }
-
-//sucesso ao pegar a localização do mapa nativo
-function MapaNativoLocalizacao( lat,lng ) {
-		latAtual = lat;
-		lngAtual = lng;
-	    var Localizaatual = new plugin.google.maps.LatLng(lat, lng);
-        myMap.animecaoMapa(Localizaatual);
-		
-		map.addMarker({
-			position: Localizaatual,
-			title: "Voce está aqui",
-            snippet: "Essa e sua ultima localização !",
-			icon: youicon,
-            animation: plugin.google.maps.Animation.BOUNCE,
-		   'styles' : {
-			   'text-align': 'center',
-				'color': 'blue'
-			}
-		}, function(marker) {
-			marker.showInfoWindow();
-		});
-}
-
-
 
 //assistir posição
 function watchMapPosition() {
@@ -450,21 +406,6 @@ function criapontosdeentradaWEB(pontosentrada){
 
 }
 
-
-//desenhar as rotas dos busus no mapa nativo
-var opolyline;
-function criapontosdeentradaNATIVO(pontosentrada){
-	
-	 map.addPolyline({
-		'points': pontosentrada,
-		'color' : '#18608d',
-		'width': 5,
-	}, function(polyline) {
-		opolyline = polyline;
-	});
-	 
-}
-
 //coloca o marquer no mapa WEB
 var cacheDestLat;
 var cacheDestLng;
@@ -512,22 +453,6 @@ function colocarosmarkerWEB(contentString,locations,omap){
 		})(marker, i));
 	}	
 	
-}
-
-//coloca o marquer no mapa NATIVO
-var markersnativo = [];
-function colocarosmarkerNATIVO(locations){
-	
-	for(i=0;i<locations.length;i++){
-		map.addMarker({
-			'position': new plugin.google.maps.LatLng(locations[i].lat, locations[i].lng),
-			snippet: "Ponto de ônibus !",
-			icon: busstopicon
-		}, function(marker) {
-			markersnativo.push(marker);
-		});
-	}
- 
 }
 
 //começar a fazer rotas
@@ -599,10 +524,6 @@ function onOnline() {
 	if (tipomapa==1){
 		alerts.showBottom("Reiniciando o APP");
 		
-		map.clear();
-		map.off();
-		$("#map").show();
-
 		iniciaMapaWeb();
 		//location.reload();
 	}

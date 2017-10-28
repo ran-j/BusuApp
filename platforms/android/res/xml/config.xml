@@ -65,6 +65,7 @@
     <allow-intent href="geo:*" />
     <access origin="*.google.com" />
     <access origin="*.googleapis.com" />
+    <preference name="SplashScreenDelay" />
     <allow-intent href="market:*" />
     <splash density="land-hdpi" src="res/screen/android/landhdpi.png" />
     <splash density="land-ldpi" src="res/screen/android/landldpi.png" />
@@ -75,6 +76,5 @@
     <splash density="port-mdpi" src="res/screen/android/portmdpi.png" />
     <splash density="port-xhdpi" src="res/screen/android/portxhdpi.png" />
     <preference name="loglevel" value="DEBUG" />
-    <preference name="SplashScreenDelay" value="10000" />
     <preference name="StatusBarOverlaysWebView" value="true" />
 </widget>
