@@ -342,7 +342,7 @@ function MapaWebLocalizacao(latitude, longitude,primeraatuaizacao) {
 		var latLong = new google.maps.LatLng(latitude, longitude);
 
 		if(primeraatuaizacao == 1){
-			sualocalizacao = new google.maps.Marker({position: latLong, icon: youicon,animation: google.maps.Animation.BOUNCE});
+			sualocalizacao = new google.maps.Marker({position: latLong, icon: youicon});
 			
 			sualocalizacao.addListener('click', function() {
 				infowindowweb.open(map, sualocalizacao);	

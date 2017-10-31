@@ -34,8 +34,45 @@ function carregaAPIgoogle(chaveAPI){
 			console.log( "Load was performed google maps api" );
 			
 			if (textStatus == "success"){
-				infowindowweb = new google.maps.InfoWindow({content: contentString2}); 
-				mapaWeb(dimap);
+				
+				//carrega o script da infowindo customizavel
+				var script = document.createElement('script');
+				script.src = "./js/lib/Infowin/infobox.js";
+				document.body.appendChild(script);
+				
+				//espera carregar o js e executa os passo seguintes
+				script.onload = function() {
+					
+					//cria a janela do infowindo
+					var boxText = document.createElement("div");
+					boxText.style.cssText = "margin-top: 8px; background: #DA9827; padding: 5px; color: white; font-size: 250%;text-align: center;border-radius: 10px;";
+					boxText.innerHTML = "Voce está aqui";
+				
+					var MinhainfoWindo = {
+						content: boxText
+						,disableAutoPan: false
+						,maxWidth: 0
+						,pixelOffset: new google.maps.Size(-140, 0)
+						,zIndex: null
+						,boxStyle: { 
+							background: "url('tipbox.gif') no-repeat"
+							,opacity: 0.75
+							,width: "280px"
+						}
+						,closeBoxMargin: "10px 2px 2px 2px"
+						,closeBoxURL: "./img/close.gif"
+						,infoBoxClearance: new google.maps.Size(1, 1)
+						,isHidden: false
+						,pane: "floatPane"
+						,enableEventPropagation: false
+					};
+					
+					//cria a infowindo customizada
+					infowindowweb = new InfoBox(MinhainfoWindo);
+				
+					//segue o fluxo
+					mapaWeb(dimap);
+				};
 			}else{
 				setTimeout(function(){ 
 					carregaAPIgoogle(chaveAPI);
