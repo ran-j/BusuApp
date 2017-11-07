@@ -278,7 +278,7 @@ function desenhaNoMap(asrotas,ospontosarray,ospontostxt){
 		criapontosdeentradaWEB(asrotas);
 				
 		//coloca os marcadores nos pontos no mapa web
-		colocarosmarkerWEB(ospontostxt,ospontosarray,map);
+		//colocarosmarkerWEB(ospontostxt,ospontosarray,map);
 				
 	}
 }

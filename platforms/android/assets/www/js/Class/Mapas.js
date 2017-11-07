@@ -70,7 +70,7 @@ function carregaAPIgoogle(chaveAPI){
 					//cria a infowindo customizada
 					infowindowweb = new InfoBox(MinhainfoWindo);
 				
-				
+					//segue o fluxo
 					mapaWeb(dimap);
 				};
 			}else{
@@ -319,7 +319,7 @@ function veriifiloop(){
 function pegarposicaoWEB() {
 
 	navigator.geolocation.getCurrentPosition(onLocationSuccessWEB, erroWEB, { timeout: 5000, enableHighAccuracy: true });
-		
+    		
 }
 
 //sucesso ao pegar a localização através do mapa web
@@ -329,8 +329,17 @@ function onLocationSuccessWEB( position ) {
 	lngAtual = position.coords.longitude;
 	
 	MapaWebLocalizacao(latAtual,lngAtual,1);
-	
-	contatoComServidor();
+	//assiste a ocalização do usuário
+	navigator.geolocation.watchPosition(SucessoAssistir, erroWEB, { enableHighAccuracy: true });
+}
+//função de sucesso ao assistir posição
+function SucessoAssistir ( position ) {
+ 
+	latAtual = position.coords.latitude;
+	lngAtual = position.coords.longitude;
+	var latLong = new google.maps.LatLng(latAtual, lngAtual);
+	//atualiza a posição do marcador no mapa
+	sualocalizacao.setPosition(latLong);
 }
 
 //erro do mapa web

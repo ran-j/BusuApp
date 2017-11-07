@@ -1,25 +1,25 @@
 {
-  "name": "io.cordova.busu3",
-  "version": "1.0.0",
-  "displayName": "Busu 3",
-  "cordova": {
-    "platforms": [
-      "android"
-    ],
-    "plugins": {
-      "cordova-plugin-geolocation": {},
-      "cordova-plugin-whitelist": {},
-      "cordova-plugin-device": {},
-      "cordova-plugin-statusbar-master": {},
-      "cordova-plugin-splashscreen": {}
+    "name": "io.cordova.busu3",
+    "version": "1.0.0",
+    "displayName": "Busu 3",
+    "cordova": {
+        "platforms": [
+            "android"
+        ],
+        "plugins": {
+            "cordova-plugin-geolocation": {},
+            "cordova-plugin-whitelist": {},
+            "cordova-plugin-device": {},
+            "cordova-plugin-statusbar-master": {},
+            "cordova-plugin-splashscreen": {}
+        }
+    },
+    "dependencies": {
+        "cordova-android": "^6.1.2",
+        "cordova-plugin-device": "^1.1.6",
+        "cordova-plugin-geolocation": "~2.4.2",
+        "cordova-plugin-splashscreen": "^4.0.3",
+        "cordova-plugin-statusbar-master": "^2.2.3",
+        "cordova-plugin-whitelist": "1"
     }
-  },
-  "dependencies": {
-    "cordova-android": "^6.1.2",
-    "cordova-plugin-device": "^1.1.6",
-    "cordova-plugin-geolocation": "~2.4.2",
-    "cordova-plugin-splashscreen": "^4.0.3",
-    "cordova-plugin-statusbar-master": "^2.2.3",
-    "cordova-plugin-whitelist": "1"
-  }
 }
